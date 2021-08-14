@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: custom-nginx-deployment
+  labels:
+    app: webserver
+spec:
+  template:
+    metadata:
+      name: custom-nginx-pod
+      labels:
+        app: webserver
+    spec:
+      containers:
+        - name: custom-nginx-container
+          image: kavitadalvi/custom_nginx:latest
+          ports:
+          - containerPort: 80
+  selector:
+    matchLabels:
+      app: webserver
+  replicas: 3
